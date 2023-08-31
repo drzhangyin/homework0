@@ -1,0 +1,56 @@
+---
+title: "BST 260 homework0"
+format: html
+editor: visual
+execute:
+  echo: false
+---
+
+**Author: Yin Zhang**
+
+Task: Write a Quarto document that generates an html with the solutions to $$ax^2+bx+c=0$$ for $$a=1, b=3, c=2$$
+
+Step 1: Solves the quadratic equation, get the solutions, and properly deal with the fact that there could be 0, 1 or 2 solutions in the code.
+
+```{r}
+# Inut a, b and c
+
+a <- 1
+b <- 3
+c <- 2
+
+# Calculate the discriminant
+
+discriminant <- b^2 - 4*a*c
+
+# Get the solutions that properly deal with the fact that there could be 0, 1 or 2 solutions
+# There will be 2 solutions when b^2 - 4*a*c >0
+# There will be 1 solution  when b^2 - 4*a*c =0
+# There will be 0 solution  when b^2 - 4*a*c <0
+
+if (discriminant > 0) {
+  # Two real solutions
+  root1 <- (-b + sqrt(discriminant)) / (2*a)
+  root2 <- (-b - sqrt(discriminant)) / (2*a)
+  cat("Two real solutions:", root1, "and", root2)
+} else if (discriminant == 0) {
+  # One real solution
+  root <- -b / (2*a)
+  cat("One real solution:", root)
+} else {
+  # No real solutions
+  cat("No real solutions")
+}
+```
+
+Step 2: Include a plot of the function to confirm the results.
+
+```{r}
+# Plot the function
+a <- 1 
+b <- 3
+c <- 2
+x <- seq(-5, 5, length = 300)
+plot(x, a*x^2 + b*x + c, type = "l")
+abline(h = 0, lty = 2)
+```
